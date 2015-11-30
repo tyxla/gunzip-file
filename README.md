@@ -1,6 +1,12 @@
-# gunzip-file [![Build Status](https://travis-ci.org/tyxla/gunzip-file.svg)](https://travis-ci.org/tyxla/gunzip-file)
+# gunzip-file
 
 Extract a source .gz archive to a specified destination file.
+
+```
+npm install gunzip-file
+```
+
+[![Build Status](https://travis-ci.org/tyxla/gunzip-file.svg)](https://travis-ci.org/tyxla/gunzip-file)
 
 ## Usage
 
