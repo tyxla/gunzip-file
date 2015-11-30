@@ -21,7 +21,7 @@ tape('gunzip a file', function(t) {
 				var actual = fs.createReadStream(filePath);
 				actual.on('open', function() {
 
-					t.same( expected.toString(), actual.toString() );
+					t.same( actual.toString(), expected.toString() );
 
 					expected.close();
 					actual.close();
