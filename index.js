@@ -16,13 +16,7 @@ var gunzipFile = function(source, destination, callback) {
 		return false;
 	}
 
-	// check if destination file is writable
-	fs.access(destination, fs.W_OK, function(err) {
-		// display an error if destination file is not writable
-		if(err) {
-			return false;
-		}
-
+	try {
 		// prepare streams
 		var src = fs.createReadStream(source);
 		var dest = fs.createWriteStream(destination);
@@ -36,7 +30,11 @@ var gunzipFile = function(source, destination, callback) {
 				callback();
 			}
 		});
-	});
+	} catch (err) {
+		// either source is not readable
+		// or the destination is not writable
+		// or file not a gzip
+	}
 }
 
 module.exports = gunzipFile;

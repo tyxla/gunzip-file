@@ -6,6 +6,12 @@
   "dependencies": {
 
   },
+  "devDependencies": {
+    "tape": "^4.2.2"
+  },
+  "scripts": {
+    "test": "tape test.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/tyxla/gunzip-file"
