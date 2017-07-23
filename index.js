@@ -13,7 +13,10 @@ function fileExists(filePath) {
 var gunzipFile = function(source, destination, callback) {
 	// check if source file exists
 	if ( !fileExists(source) ) {
-		return false;
+		if ( typeof callback === 'function' ) {
+      callback('Source file does not exist! ' + source);
+      return;
+    }
 	}
 
 	try {
@@ -22,7 +25,27 @@ var gunzipFile = function(source, destination, callback) {
 		var dest = fs.createWriteStream(destination);
 
 		// extract the archive
-		src.pipe(zlib.createGunzip()).pipe(dest);
+		src
+      .on('error', function(err) {
+        if ( typeof callback === 'function' ) {
+          callback(err);
+          return;
+        }
+      })
+      .pipe(zlib.createGunzip())
+      .on('error', function(err) {
+        if ( typeof callback === 'function' ) {
+          callback(err);
+          return;
+        }
+      })
+      .pipe(dest)
+      .on('error', function(err) {
+        if ( typeof callback === 'function' ) {
+          callback(err);
+          return;
+        }
+      });
 
 		// callback on extract completion
 		dest.on('close', function() {
@@ -34,6 +57,9 @@ var gunzipFile = function(source, destination, callback) {
 		// either source is not readable
 		// or the destination is not writable
 		// or file not a gzip
+    if ( typeof callback === 'function' ) {
+      callback(err);
+    }
 	}
 }
 
