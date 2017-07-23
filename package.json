@@ -1,11 +1,9 @@
 {
   "name": "gunzip-file",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Extract a source .gz archive to a specified destination file.",
   "main": "index.js",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "tape": "^4.2.2"
   },
