@@ -34,6 +34,7 @@ var gunzipFile = function(source, destination, callback) {
 		// either source is not readable
 		// or the destination is not writable
 		// or file not a gzip
+		callback(err);
 	}
 }
 
